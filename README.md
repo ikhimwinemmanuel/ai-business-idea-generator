@@ -1,40 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# MediNotes AI
 
-## Getting Started
+A full-stack healthcare consultation assistant that turns a doctor's consultation notes into:
 
-First, run the development server:
+- a structured summary for medical records
+- clear follow-up actions for the doctor
+- a patient-friendly email draft
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The project started as a simple LLM web application and was progressively expanded with authentication, paid access, streaming responses, structured form input, backend validation, Docker containerisation and AWS deployment.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> **Important:** MediNotes AI is a portfolio and learning project. It is not intended for use with real patient information or as a medical decision-making system.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## What the Application Does
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+A signed-in user can enter:
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Patient name
+- Date of visit
+- Consultation notes
 
-## Learn More
+The application sends the information to a FastAPI backend, which validates the request and sends a structured prompt to the OpenAI API.
 
-To learn more about Next.js, take a look at the following resources:
+The response is streamed back to the browser and displayed in three sections:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+1. **Summary of visit for the doctor's records**
+2. **Next steps for the doctor**
+3. **Draft of email to patient in patient-friendly language**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The application also includes user authentication and subscription-based access.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+### Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- React Markdown
+- React DatePicker
+
+### Backend
+
+- Python
+- FastAPI
+- Pydantic
+- OpenAI API
+- Server-Sent Events
+
+### Authentication and Billing
+
+- Clerk authentication
+- JWT-based API authentication
+- Clerk subscriptions
+- Protected premium access
+
+### Deployment and Infrastructure
+
+- Docker
+- Amazon ECR
+- AWS Lambda
+- AWS Lambda Web Adapter
+- Lambda Function URLs
+- Amazon CloudWatch
+- Vercel during the earlier development stages
+
+---
+
+## How It Works
+
+```text
+User
+  |
+  v
+Next.js Consultation Form
+  |
+  | Patient name
+  | Visit date
+  | Consultation notes
+  | Clerk JWT
+  v
+FastAPI Backend
+  |
+  | Pydantic validation
+  | Authentication check
+  | Prompt construction
+  v
+OpenAI API
+  |
+  | Streaming response
+  v
+FastAPI
+  |
+  | Server-Sent Events
+  v
+Next.js Interface
+  |
+  v
+Medical summary
+Doctor action items
+Patient email draft
