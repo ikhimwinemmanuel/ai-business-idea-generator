@@ -8,7 +8,13 @@ A full-stack healthcare consultation assistant that turns a doctor's consultatio
 
 The project started as a simple LLM web application and was progressively expanded with authentication, paid access, streaming responses, structured form input, backend validation, Docker containerisation and AWS deployment.
 
-> **Important:** MediNotes AI is a portfolio and learning project. It is not intended for use with real patient information or as a medical decision-making system.
+> **Development Status**
+>
+> MediNotes AI is currently under active development and is being tested using synthetic data only.
+>
+> The application is not yet intended for use with real patient information or for clinical decision-making. Before any production healthcare use, additional safeguards would be required, including appropriate regulatory compliance, stronger access controls, audit logging, encryption, data retention policies, patient consent processes, and secure third-party service agreements.
+>
+> The long-term goal is to develop MediNotes AI into a production-ready healthcare application that can support clinicians with consultation documentation and patient communication.
 
 ---
 
