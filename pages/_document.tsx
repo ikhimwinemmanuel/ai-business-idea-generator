@@ -4,10 +4,10 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>Business Idea Generator</title>
+        <title>MediNotes AI</title>
         <meta
           name="description"
-          content="AI-powered business idea generation"
+          content="Healthcare consultation summaries and patient communication"
         />
       </Head>
 
